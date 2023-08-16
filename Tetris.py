@@ -1,18 +1,24 @@
 import Player
 from Player import *
 
-import Blocks
-from Blocks import *
+import Block
+from Block import *
 
 import Board
 from Board import *
 
-import os, time
+import Keystroke
+from Keystroke import *
+
+import os, time, sys
 
 class Tetris:
     def __init__(self):
         self.player = self.initialize_player()
         self.board = self.initialize_board()
+        self.keystroke = Keystroke()
+        self.present_block = Block().get_random_block()
+        self.next_block = Block().get_random_block()
         self.game_alive = True
         self.player_input_timeout = 3 # 1 sec
         self.start_game()
@@ -36,18 +42,26 @@ class Tetris:
         pass
     
     def start_game(self):
-        self.wait_for_enter_key()
+        # self.wait_for_enter_key()
         while(self.game_alive):
-            val = self.player.wait_for_input(self.player_input_timeout)
-            if val=='q':
+            # display board
+            self.board.display_board()
+            keystroke = self.player.wait_for_input(self.player_input_timeout)
+            # quit game 
+            if keystroke == self.keystroke.quit:
                 self.game_alive = False
-            elif val=='d':
-                pass
+                sys.exit()
 
+            # updating board with keystroke and update the block
+            self.present_block = self.board.update_board( keystroke = keystroke , block = self.present_block)
+            self.board.display_board()
 
+            # assign blocks for next frame 
+            # self.present_block = self.next_block
+            # self.next_block = Block().get_random_block()
+            # print("Present:", self.present_block)
+            # print("Random:", self.next_block)
 
-
-            print(val)
             time.sleep(1)
             os.system("clear")
             
