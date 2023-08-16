@@ -7,6 +7,8 @@ from Blocks import *
 import Board
 from Board import *
 
+import os, time
+
 class Tetris:
     def __init__(self):
         self.player = self.initialize_player()
@@ -37,10 +39,18 @@ class Tetris:
         self.wait_for_enter_key()
         while(self.game_alive):
             val = self.player.wait_for_input(self.player_input_timeout)
-            if val=='':
+            if val=='q':
                 self.game_alive = False
-            
+            elif val=='d':
+                pass
 
+
+
+
+            print(val)
+            time.sleep(1)
+            os.system("clear")
+            
         print("Game Stopped")
 
 game = Tetris()

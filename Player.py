@@ -41,6 +41,11 @@ class Player:
     #         return None
         
     def wait_for_input(self, timeout):
+        # l -> move left
+        # r -> move right
+        # space -> rotate
+        # no input in timelimit = d -> move down
+      
         try:
             keystroke = inputimeout(prompt='Enter Input', timeout=timeout)
         except TimeoutOccurred:
