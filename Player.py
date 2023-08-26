@@ -30,16 +30,6 @@ class Player:
         name = input()
         self.set_player_name(name)
 
-    # def wait_for_input(self, timeout):
-    #     start_time = time.time()
-    #     while time.time() - start_time < timeout:
-    #         input_value = input('Enter some input: ')
-    #         if input_value:
-    #             return input_value
-    #     else:
-    #         print('timedout : moving block down')
-    #         return None
-        
     def wait_for_input(self, timeout):
         # l -> move left
         # r -> move right
@@ -47,7 +37,8 @@ class Player:
         # no input in timelimit = d -> move down
       
         try:
-            keystroke = inputimeout(prompt='Enter Input', timeout=timeout)
+            keystroke = inputimeout(prompt='\n\n Enter Input :', timeout=timeout)
         except TimeoutOccurred:
             return 'd'
         return keystroke
+ 

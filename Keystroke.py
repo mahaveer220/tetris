@@ -5,4 +5,4 @@ class Keystroke:
         self.down = 'd'
         self.left = 'l'
         self.right = 'r'
-        self.rotate = ' '
+        self.rotate = 'm'
